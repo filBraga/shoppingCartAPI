@@ -1,24 +1,18 @@
-const url = 'https://api.mercadolibre.com/sites/MLB/search?q=';
+const buildURL = (computador) => `https://api.mercadolibre.com/sites/MLB/search?q=${computador}`;
 
-const fetchProducts = (computador) => fetch(`${url}${computador}`)
-    .then((resonse) => resonse.json())
-    .then((data) => data.results)
-    .catch((error) => (error));
+const fetchProducts = (computador) => fetch(buildURL(computador))
+  .then((resonse) => resonse.json())
+  .then((data) => data.results)
+  .catch((error) => (error));
 
-  //  url.then((response) => {
-  //   const promiseJSON = response.json();
-  //   promiseJSON.then((object) => {
-  //     const itemDisplay = {
-  //       sku: object.id,
-  //       title: object.title,
-  //       img: object.thumbnail,
-  //     };
-  //     createProductItemElement(itemDisplay);
-  //   });
-  // });
+const fetchProductsJson = (computador) => fetch(buildURL(computador))
+.then((resonse) => resonse.json())
+.catch((error) => (error));
 
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchProducts,
+    buildURL,
+    fetchProductsJson,
   };
 }
