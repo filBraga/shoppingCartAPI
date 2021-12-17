@@ -1,6 +1,5 @@
 require('../mocks/fetchSimulator');
-const { fetchProducts, /*fetchProductsJson*/ } = require('../helpers/fetchProducts');
-const { buildURL } = require('../helpers/fetchProducts');
+const { fetchProducts, buildURL } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fecthProducts', () => {
