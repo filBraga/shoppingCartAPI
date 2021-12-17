@@ -9,7 +9,6 @@ const fetchProducts = async (computador) => {
   } catch (error) {
     return error;
   }
-
   // .then((resonse) => resonse.json())
   // .then((data) => data.results)
   // .catch((error) => (error));
