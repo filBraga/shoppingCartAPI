@@ -12,7 +12,7 @@ const fetchProducts = async (computador) => {
     const url = buildURL(computador);
     const fetchProductsFetch = await fetch(url);
     const fetchProductsJson = await fetchProductsFetch.json();
-    return fetchProductsJson.results;
+    return fetchProductsJson;
   } catch (error) {
     return error;
   }

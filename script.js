@@ -26,7 +26,8 @@ function createProductItemElement({ sku, name, image }) {
 
 const addProductSection = async () => {
   const productElementAll = await fetchProducts('computador');
-  productElementAll.forEach(({ id, title, thumbnail }) => {
+  const productArr = productElementAll.results;
+  productArr.forEach(({ id, title, thumbnail }) => {
     const productElement = createProductItemElement({
       sku: id,
       name: title,
@@ -42,6 +43,7 @@ function getSkuFromProductItem(item) {
 }
 
 function cartItemClickListener() {
+  // coloque seu código aqui
   // https://pretagteam.com/question/removing-li-items-with-button-onclick
   // Re-reading the question I think you also want to add that to the dynamic LIs
   this.parentNode.removeChild(this);
