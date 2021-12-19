@@ -41,17 +41,20 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
-function cartItemClickListener(event) {
-  // coloque seu código aqui
+function cartItemClickListener() {
+  // https://pretagteam.com/question/removing-li-items-with-button-onclick
+  // Re-reading the question I think you also want to add that to the dynamic LIs
+  this.parentNode.removeChild(this);
 }
 
 function createCartItemElement(sku, name, salePrice) {
   const li = document.createElement('li');
+  // Criei uma const para selecionar a classe cart items
   const itemList = document.querySelector('.cart__items');
-
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
+  // Criei um append child na classe cart items selecionada
   itemList.appendChild(li);
   return li;
 }
@@ -60,9 +63,12 @@ function addItemClickListner() {
   const btns = document.querySelectorAll('.item__add');
   btns.forEach((btn) => {
     btn.addEventListener('click', async () => {
+      // Peguei o parent do button e executei a func abaixo
       const skuId = await getSkuFromProductItem(btn.parentNode);
+      // O skuId recebe o id do produto e executei na func fetchItem para pegar o obj
       const { id: sku1, title: name2, base_price: salePrice3 } = await fetchItem(skuId);
-      console.log(sku1, name2, salePrice3);
+      // console.log(sku1, name2, salePrice3);
+      // executei a func abaixo para criar o li na lista
       createCartItemElement(sku1, name2, salePrice3);
     });
  });
