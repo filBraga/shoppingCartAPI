@@ -77,11 +77,14 @@ function addItemClickListner() {
 }
 
 function apagarCarrinho() {
-  console.log('oi');
-  document.querySelector('.cart__items').innerHTML = '';
+  const esvaziarCarrinhoBtn = document.querySelector('.empty-cart');
+  esvaziarCarrinhoBtn.addEventListener('click', () => {
+    document.querySelector('.cart__items').innerHTML = '';
+  });
 }
 
 window.onload = async () => {
   await addProductSection();
   await addItemClickListner();
+  await apagarCarrinho();
 };
