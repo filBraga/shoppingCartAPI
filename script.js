@@ -38,6 +38,19 @@ const addProductSection = async () => {
   });
 };
 
+const totalPrice = '.total-price';
+let total = 0;
+const addPrice = (price) => {
+  total += price;
+  document.querySelector(totalPrice).innerHTML = total;
+  // return total;
+};
+const subtractPrice = (price) => {
+  total -= price;
+  document.querySelector(totalPrice).innerHTML = total;
+  // return total;
+};
+
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
@@ -46,7 +59,7 @@ function cartItemClickListener() {
   // coloque seu código aqui
   // https://pretagteam.com/question/removing-li-items-with-button-onclick
   // Re-reading the question I think you also want to add that to the dynamic LIs
-  this.parentNode.removeChild(this);
+    this.parentNode.removeChild(this);
 }
 
 function createCartItemElement(sku, name, salePrice) {
@@ -73,6 +86,7 @@ function addItemClickListner() {
       // console.log(sku1, name2, salePrice3);
       // executei a func abaixo para criar o li na lista
       createCartItemElement(sku1, name2, salePrice3);
+      addPrice(salePrice3);
     });
  });
 }
@@ -81,6 +95,8 @@ function apagarCarrinho() {
   const esvaziarCarrinhoBtn = document.querySelector('.empty-cart');
   esvaziarCarrinhoBtn.addEventListener('click', () => {
     document.querySelector('.cart__items').innerHTML = '';
+    document.querySelector(totalPrice).innerHTML = '0,00';
+    total = 0;
     localStorage.removeItem('cartItems');
   });
 }
