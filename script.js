@@ -58,6 +58,7 @@ function createCartItemElement(sku, name, salePrice) {
   li.addEventListener('click', cartItemClickListener);
   // Criei um append child na classe cart items selecionada
   itemList.appendChild(li);
+  saveCartItems(li.innerHTML);
   return li;
 }
 
