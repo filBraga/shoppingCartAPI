@@ -68,7 +68,7 @@ function addItemClickListner() {
       // Peguei o parent do button e executei a func abaixo
       const skuId = await getSkuFromProductItem(btn.parentNode);
       // O skuId recebe o id do produto e executei na func fetchItem para pegar o obj
-      const { id: sku1, title: name2, base_price: salePrice3 } = await fetchItem(skuId);
+      const { id: sku1, title: name2, price: salePrice3 } = await fetchItem(skuId);
       // console.log(sku1, name2, salePrice3);
       // executei a func abaixo para criar o li na lista
       createCartItemElement(sku1, name2, salePrice3);

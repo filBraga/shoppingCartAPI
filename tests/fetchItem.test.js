@@ -3,18 +3,16 @@ const { fetchItem , buildURLId} = require('../helpers/fetchItem');
 const item = require('../mocks/item');
 
 describe('2 - Teste a função fecthItem', () => {
-  // implemente seus testes aqui
-  // fail('Teste vazio');
+
   it('Teste se fetchItem é uma função;', ()=> {
-    const fetchItem = () => () => {};
-    const result = fetchItem();
-    expect(typeof result).toBe('function')
+    const actual = typeof fetchItem;
+    const expected = 'function'
+    expect(actual).toBe(expected);
   })
 
   it('Execute a função fetchItem com o argumento "MLB1615760527" e teste se fetch foi chamada', async () => {
-    const resultado = await fetchItem('MLB1615760527');
-    // https://jestjs.io/docs/expect#expectanything
-    expect(resultado).toEqual(expect.anything())
+    fetchItem('MLB1615760527')
+    expect(fetch).toHaveBeenCalled();
   })
 
   it('Teste se, ao chamar a função fetchItem com o argumento "MLB1615760527", a função fetch utiliza o endpoint ""https://api.mercadolibre.com/items/MLB1615760527"', async () => {

@@ -1,20 +1,19 @@
 require('../mocks/fetchSimulator');
+const { fetchItem } = require('../helpers/fetchItem');
 const { fetchProducts, buildURL } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fecthProducts', () => {
 
-  // https://stackoverflow.com/questions/50818474/how-to-properly-test-if-the-type-of-the-result-is-a-javascript-function-in-jes
   it('Teste se fetchProducts é uma função;', ()=> {
-    const fetchProducts = () => () => {};
-    const result = fetchProducts();
-    expect(typeof result).toBe('function')
+    const actual = typeof fetchProducts;
+    const expected = 'function'
+    expect(actual).toBe(expected);
   })
 
   it('Execute a função fetchProducts com o argumento "computador" e teste se fetch foi chamada', async () => {
-    const resultado = await fetchProducts('computador');
-    // https://jestjs.io/docs/expect#expectanything
-    expect(resultado).toEqual(expect.anything())
+    fetchProducts('computador')
+    expect(fetch).toHaveBeenCalled();
   })
 
   it('Teste se, ao chamar a função fetchProducts com o argumento "computador", a função fetch utiliza o endpoint "https://api.mercadolibre.com/sites/MLB/search?q=computador"', async () => {
