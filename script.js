@@ -58,7 +58,7 @@ function createCartItemElement(sku, name, salePrice) {
   li.addEventListener('click', cartItemClickListener);
   // Criei um append child na classe cart items selecionada
   itemList.appendChild(li);
-  saveCartItems(li.innerHTML);
+  saveCartItems(li.parentElement.innerHTML);
   return li;
 }
 
@@ -84,8 +84,15 @@ function apagarCarrinho() {
   });
 }
 
+const getDataFromLocalStorage = () => {
+  const data = getSavedCartItems();
+  const ol = document.querySelector('ol');
+  ol.innerHTML = data;
+};
+
 window.onload = async () => {
   await addProductSection();
   await addItemClickListner();
   await apagarCarrinho();
+  await getDataFromLocalStorage();
 };
