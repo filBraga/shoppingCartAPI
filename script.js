@@ -81,6 +81,7 @@ function apagarCarrinho() {
   const esvaziarCarrinhoBtn = document.querySelector('.empty-cart');
   esvaziarCarrinhoBtn.addEventListener('click', () => {
     document.querySelector('.cart__items').innerHTML = '';
+    localStorage.removeItem('cartItems');
   });
 }
 
