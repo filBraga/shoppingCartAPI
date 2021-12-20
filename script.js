@@ -76,6 +76,11 @@ function addItemClickListner() {
  });
 }
 
+function apagarCarrinho() {
+  console.log('oi');
+  document.querySelector('.cart__items').innerHTML = '';
+}
+
 window.onload = async () => {
   await addProductSection();
   await addItemClickListner();
