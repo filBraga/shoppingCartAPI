@@ -1,3 +1,6 @@
+const totalPrice = '#valorTotalId';
+let total = localStorage.getItem('total');
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -38,16 +41,16 @@ const addProductSection = async () => {
   });
 };
 
-const totalPrice = '#valorTotalId';
-let total = 0;
 const addPrice = (price) => {
   total += price;
   document.querySelector(totalPrice).innerHTML = total;
+  localStorage.setItem('total', total);
   // return total;
 };
 const subtractPrice = (price) => {
   total -= price;
   document.querySelector(totalPrice).innerHTML = total.toFixed(2);
+  localStorage.setItem('total', total);
   // return total;
 };
 
@@ -63,8 +66,7 @@ function cartItemClickListener() {
     .slice(-1)
     .pop();
   subtractPrice(price);
-  console.log(price);
-
+  // console.log(price);
   this.parentNode.removeChild(this);
   localStorage.removeItem('cartItems');
   const newLocalStorage = document.querySelector('ol').innerHTML;
@@ -101,13 +103,24 @@ function addItemClickListner() {
  });
 }
 
+function addClickAfterReload() {
+  // essa funçao adiciona o click evnt quando da refresh na pagina
+  // sem essa func, quando da refresh, os li já listados nao tinham a func cartItemClickListener
+  const li = document.querySelectorAll('li');
+  li.forEach((liItem) => {
+    console.log(liItem);
+    liItem.addEventListener('click', cartItemClickListener);
+ });
+}
+
 function apagarCarrinho() {
   const esvaziarCarrinhoBtn = document.querySelector('.empty-cart');
   esvaziarCarrinhoBtn.addEventListener('click', () => {
     document.querySelector('.cart__items').innerHTML = '';
-    document.querySelector(totalPrice).innerHTML = '0,00';
+    document.querySelector(totalPrice).innerHTML = '0.00';
     total = 0;
     localStorage.removeItem('cartItems');
+    localStorage.removeItem('total');
   });
 }
 
@@ -115,6 +128,9 @@ const getDataFromLocalStorage = () => {
   const data = getSavedCartItems();
   const ol = document.querySelector('ol');
   ol.innerHTML = data;
+
+  const totalQuerrySel = document.querySelector('#valorTotalId');
+  totalQuerrySel.innerText = localStorage.getItem('total');
 };
 
 window.onload = async () => {
@@ -122,4 +138,5 @@ window.onload = async () => {
   await addItemClickListner();
   await apagarCarrinho();
   await getDataFromLocalStorage();
+  await addClickAfterReload();
 };
