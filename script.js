@@ -47,7 +47,7 @@ const addPrice = (price) => {
 };
 const subtractPrice = (price) => {
   total -= price;
-  document.querySelector(totalPrice).innerHTML = total;
+  document.querySelector(totalPrice).innerHTML = total.toFixed(2);
   // return total;
 };
 
@@ -57,9 +57,15 @@ function getSkuFromProductItem(item) {
 
 function cartItemClickListener() {
   // coloque seu código aqui
-  // https://pretagteam.com/question/removing-li-items-with-button-onclick
-  // Re-reading the question I think you also want to add that to the dynamic LIs
-    this.parentNode.removeChild(this);
+  const price = this
+    .innerText.split('|').slice(-1).pop()
+    .split('$')
+    .slice(-1)
+    .pop();
+  subtractPrice(price);
+  console.log(price);
+
+  this.parentNode.removeChild(this);
 }
 
 function createCartItemElement(sku, name, salePrice) {
