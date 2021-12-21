@@ -66,13 +66,17 @@ function cartItemClickListener() {
   console.log(price);
 
   this.parentNode.removeChild(this);
+  localStorage.removeItem('cartItems');
+  const newLocalStorage = document.querySelector('ol').innerHTML;
+  saveCartItems(newLocalStorage);
 }
 
 function createCartItemElement(sku, name, salePrice) {
   const li = document.createElement('li');
+  const cart = '.cart__items';
   // Criei uma const para selecionar a classe cart items
-  const itemList = document.querySelector('.cart__items');
-  li.className = 'cart__item';
+  const itemList = document.querySelector(cart);
+  li.className = cart;
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   // Criei um append child na classe cart items selecionada
