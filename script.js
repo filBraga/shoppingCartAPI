@@ -38,7 +38,7 @@ const addProductSection = async () => {
   });
 };
 
-const totalPrice = '.total-price';
+const totalPrice = '#valorTotalId';
 let total = 0;
 const addPrice = (price) => {
   total += price;
