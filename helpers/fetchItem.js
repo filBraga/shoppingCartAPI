@@ -12,16 +12,6 @@ const fetchItem = async (id) => {
   }
 };
 
-// fetch products \/
-// try {
-//   const url = buildURL(computador);
-//   const fetchProductsFetch = await fetch(url);
-//   const fetchProductsJson = fetchProductsFetch.json();
-//   return fetchProductsJson;
-// } catch (error) {
-//   return error;
-// }
-
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchItem,

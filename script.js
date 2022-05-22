@@ -1,5 +1,12 @@
 const totalPrice = '#valorTotalId';
-let total = localStorage.getItem('total');
+// let total = localStorage.getItem('total');
+
+const onLoadWindow = () => {
+  const localStorageTotal = localStorage.getItem('total');
+  if (!localStorageTotal) {
+    localStorage.setItem('total', 0);
+  }
+};
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -133,10 +140,11 @@ const getDataFromLocalStorage = () => {
   totalQuerrySel.innerText = localStorage.getItem('total');
 };
 
-window.onload = async () => {
-  await addProductSection();
-  await addItemClickListner();
-  await apagarCarrinho();
-  await getDataFromLocalStorage();
-  await addClickAfterReload();
-};
+// window.onload = async () => {
+//   await onLoadWindow();
+//   await addProductSection();
+//   await addItemClickListner();
+//   await apagarCarrinho();
+//   await getDataFromLocalStorage();
+//   await addClickAfterReload();
+// };
